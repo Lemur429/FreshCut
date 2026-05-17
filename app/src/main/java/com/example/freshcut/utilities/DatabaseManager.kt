@@ -82,17 +82,18 @@ object DatabaseManager {
 
     }
 
-    fun updateStoreSettings(settings: StoreSettings)
+    fun updateStoreSettings(settings: StoreSettings,onSuccess: (Int) -> Unit,
+                            onFailure: (Exception) -> Unit)
     {
         settingsCollection
             .document("main")
-            .set(settings) // This replaces the entire document with your object
+            .set(settings)
             .addOnSuccessListener {
-                cleanupInvalidAppointments(settings,{},{})
+                cleanupInvalidAppointments(settings,onSuccess,onFailure)
                 Log.d("StoreSettings", "Successfully saved all settings!")
             }
             .addOnFailureListener { e ->
-                Log.e("StoreSettings", "Failed to save: ${e.message}")
+                onFailure(e)
             }
     }
     fun getStoreSettings(ready: (StoreSettings) -> Unit)
@@ -284,6 +285,7 @@ object DatabaseManager {
     }
     fun cleanupInvalidAppointments(
         newSettings: StoreSettings,
+
         onSuccess: (Int) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
@@ -296,7 +298,7 @@ object DatabaseManager {
                 val batch = db.batch()
                 val openTime = newSettings.parsedOpeningTime
                 val closeTime =newSettings.parsedClosingTime
-                // 1. FILTER: Create a list containing ONLY the bad appointments
+
                 val invalidDocuments = documents.filter { document ->
                     val appt = document.toObject(Appointment::class.java)
                     val apptInstant = appt.timestamp?.toDate()?.toInstant() ?: return@filter false
@@ -304,23 +306,18 @@ object DatabaseManager {
 
                     val localDate = apptDate.toLocalDate()
                     val localTime = apptDate.toLocalTime()
-                    val dayOfWeekIndex = apptDate.dayOfWeek.value % 7
+                    val dayOfWeekIndex = apptDate.dayOfWeek.value% 7
 
-                    // The 3 Rules
                     val breaksDayRule = dayOfWeekIndex < newSettings.workingDays.size && !newSettings.workingDays[dayOfWeekIndex]
                     val breaksDateRule = newSettings.blockedDates.contains(localDate.toString())
                     val breaksTimeRule = localTime.isBefore(openTime) || localTime.isAfter(closeTime)
 
-                    // If ANY of these are true, the filter keeps it in the "invalid" list
                     breaksDayRule || breaksDateRule || breaksTimeRule
                 }
 
-// 2. ACTION: Tell the batch to delete everything in that list
                 invalidDocuments.forEach { document ->
                     batch.delete(document.reference)
                 }
-
-// 3. EXECUTE
                 val deletedCount = invalidDocuments.size
                 if (deletedCount > 0) {
                     batch.commit()

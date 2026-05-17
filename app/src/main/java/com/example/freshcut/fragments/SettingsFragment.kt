@@ -76,14 +76,24 @@ class SettingsFragment : Fragment() {
             )
 
             settings.workingDays=newWorkingDays
-            DatabaseManager.updateStoreSettings(settings)
+            DatabaseManager.updateStoreSettings(settings,{count ->
+                Toast.makeText(context, "${count} appointments have been canceled", Toast.LENGTH_SHORT).show()
+            },{e ->
+                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+
+            })
         }
 
         view.findViewById<Button>(R.id.btn_update_work_hours).setOnClickListener {
             settings.closingTime = closingHourDropdown.text.toString()
             settings.openingTime = openingHourDropdown.text.toString()
 
-            DatabaseManager.updateStoreSettings(settings)
+            DatabaseManager.updateStoreSettings(settings,{count ->
+                Toast.makeText(context, "${count} appointments have been canceled", Toast.LENGTH_SHORT).show()
+            },{e ->
+                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+
+            })
         }
 
     }

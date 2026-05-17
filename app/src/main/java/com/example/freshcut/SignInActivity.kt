@@ -50,8 +50,7 @@ class SignInActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
 
             })
-        }else
-        {
+        }
             initViews()
 
             signInButton.setOnClickListener {
@@ -103,7 +102,7 @@ class SignInActivity : AppCompatActivity() {
                 val intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
             }
-        }
+
 
     }
     fun initViews()

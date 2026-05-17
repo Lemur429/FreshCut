@@ -44,7 +44,7 @@ class AppointmentsFragment : Fragment() {
                     if (position != -1) {
                         appointmentsList.removeAt(position)
                         adapter.notifyItemRemoved(position)
-                        Toast.makeText(view.context, "Appointment deleted", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(view.context, "Appointment has been canceled", Toast.LENGTH_SHORT).show()
                     }
                 },
                 onFailure = { exception ->

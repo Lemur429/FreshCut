@@ -7,7 +7,7 @@ android:color="#40000000">
 <item android:id="@android:id/background">
     <shape xmlns:android="http://schemas.android.com/apk/res/android">
         <solid android:color="@color/mainColors_back"/>
-        <stroke android:width="3dp" android:color="#87879D" />
+        <stroke android:width="3dp" android:color="#9BA8B6" />
         <corners android:radius="10dp"/>
         <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp" />
     </shape>

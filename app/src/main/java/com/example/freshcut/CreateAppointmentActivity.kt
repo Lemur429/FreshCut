@@ -184,10 +184,16 @@ class CreateAppointmentActivity : AppCompatActivity() {
         val times = generateTimeSlots(settings.parsedOpeningTime, settings.parsedClosingTime)
         DatabaseManager.getBookedTimesFromFirebase(selectedDate) { bookedTimes ->
 
-            val availableTimes = times.filter { time ->
+            var availableTimes = times.filter { time ->
                 !bookedTimes.contains(time)
             }
 
+            if (selectedDate == LocalDate.now()) {
+                val now = LocalTime.now()
+                availableTimes = availableTimes.filter { time ->
+                    time.isAfter(now)
+                }
+            }
             if (availableTimes.isEmpty()) {
                 timeSpinner.visibility = View.GONE
                 Toast.makeText(this, "Sorry, this date is fully booked!", Toast.LENGTH_LONG).show()

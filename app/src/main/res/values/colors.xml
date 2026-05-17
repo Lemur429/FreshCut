@@ -5,6 +5,6 @@
     <color name="gray">#FF777777</color>
     <color name="dark_gray">#FF222222</color>
     <color name="mainColors">#2196F3</color>
-    <color name="mainColors_back">#C1D8EB</color>
+    <color name="mainColors_back">#E2F3FF</color>
     <color name="link_text_color">#1976D2</color>
 </resources>

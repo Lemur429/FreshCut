@@ -73,7 +73,7 @@ class CalendarAdapter(
     private fun isDateAvailable(targetDate: LocalDate, settings: StoreSettings): Boolean {
         if (targetDate.isBefore(LocalDate.now())) return false
         if (settings.parsedBlockedDates.contains(targetDate)) return false
-        val dayIndex = targetDate.dayOfWeek.value-1
+        val dayIndex = targetDate.dayOfWeek.value%7
         if (dayIndex in settings.workingDays.indices) {
             return settings.workingDays[dayIndex]
         }

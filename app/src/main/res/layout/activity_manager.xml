@@ -37,7 +37,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:background="@drawable/blue_bg_border">
 
                 <!-- Main Icon -->
                 <ImageView
@@ -117,6 +118,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/white_bg_border"
+            app:tabTextColor="@color/mainColors"
+            app:tabRippleColor="@color/mainColors_back"
+            app:tabIndicatorColor="@color/mainColors"
             android:layout_marginBottom="16dp">
 
         </com.google.android.material.tabs.TabLayout>
