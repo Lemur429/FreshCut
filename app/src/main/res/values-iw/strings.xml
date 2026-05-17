@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FreshCut</string>
+    <string name="hint_mail">מייל</string>
+    <string name="signup_button">הרשמה</string>
+    <string name="hint_password">סיסמה</string>
+    <string name="hint_fullname">שם מלא</string>
+    <string name="signup_text">מלא את הפרטים ולחץ על הכפתור למטה להרשמה</string>
+    <string name="signin_button">התחברות</string>
+    <string name="signin_text">מלא את הפרטים ולחץ על הכפתור למטה להתחברות</string>
+    <string name="no_account_text">עדיין לא רשום?</string>
+    <string name="existing_account_text">חשבון קיים?</string>
+    <string name="new_appointment_main">תור חדש</string>
+    <string name="new_appointment_sub">קבע תור חדש</string>
+    <string name="appointment_history_main">היסטוריית תורים</string>
+    <string name="appointment_history_sub">ראה תורים קודמים</string>
+    <string name="settings">הגדרות</string>
+    <string name="appo_today">תורים היום</string>
+    <string name="appointments">תורים</string>
+    <string name="confirm_booking">קבע תור</string>
+    <string name="update_work_hours">עדכן שעות עבודה</string>
+    <string name="store_management">ניהול מספרה</string>
+    <string name="store_management_sub">פאנל ניהול לבעל העסק</string>
+    <string name="signout_text">התנתק</string>
+    <string name="welcome_user_text">שלום</string>
+    <string name="back">חזור</string>
+    <string name="select_date_toast">נא לבחור בתאריך</string>
+    <string name="select_time_toast">נא לבחור בשעה זמינה</string>
+    <string name="select_service_toast">נא לבחור בסוג השרות</string>
+    <string name="next_appointments">התורים הבאים</string>
+</resources>
